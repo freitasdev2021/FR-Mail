@@ -6,17 +6,18 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class frcard extends Component
+class form extends Component
 {
-    public $id;
-    public $submodulos;
+    public $rota;
+
+    public $enctype;
     /**
      * Create a new component instance.
      */
-    public function __construct($submodulos,$id)
+    public function __construct($rota,$enctype)
     {
-        $this->id = $id;
-        $this->submodulos = $submodulos;
+        $this->enctype = $enctype;
+        $this->rota = $rota;
     }
 
     /**
@@ -24,6 +25,6 @@ class frcard extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.Frcard');
+        return view('components.Form');
     }
 }
