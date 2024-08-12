@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('emails', function (Blueprint $table) {
             $table->id();
             $table->integer('IDLista');
+            $table->integer('IDInstituicao');
             $table->string('Nome',100);
             $table->string('Email',100);
             $table->timestamps();

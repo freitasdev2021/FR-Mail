@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Auth\Events\Registered;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use App\Http\Controllers\InstituicoesController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rules;
@@ -34,12 +35,19 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'lowercase', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', 'confirmed', Rules\Password::defaults()],
         ]);
+        
+        $Instituicao = InstituicoesController::create([
+            "Ramo" => $request->Ramo,
+            "CNPJ" => self::limpaCaracteres($request->CNPJ),
+            "Nome" => $request->Nome
+        ]);
 
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'tipo' => 1
+            'tipo' => 1,
+            'IDInstituicao' => $Instituicao
         ]);
 
         event(new Registered($user));

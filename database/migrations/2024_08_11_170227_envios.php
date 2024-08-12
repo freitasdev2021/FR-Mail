@@ -18,6 +18,7 @@ return new class extends Migration
             $table->integer('IDMensagem');
             $table->text('Mensagem');
             $table->text('Anexos');
+            $table->integer('IDInstituicao');
             $table->timestamp('Hora');
             $table->timestamps();
         });

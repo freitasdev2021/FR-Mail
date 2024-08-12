@@ -13,6 +13,7 @@ return new class extends Migration
     {
         Schema::create('mensagens', function (Blueprint $table) {
             $table->id();
+            $table->integer('IDInstituicao');
             $table->string('Titulo',100);
             $table->text('Conteudo');
             $table->text('Anexos');

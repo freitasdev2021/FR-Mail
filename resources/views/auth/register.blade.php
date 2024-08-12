@@ -54,6 +54,87 @@
                     <input type="password" name="password_confirmation" class="form-control form-control-lg @error('password') is-invalid @enderror" required placeholder="Confirme sua Senha" />
                 </div>
 
+                <label>Dados da Instituição</label>
+
+                <div class="form-outline mb-3">
+                    <input type="name" name="Nome" class="form-control form-control-lg" required placeholder="Nome da Instituição" />
+                </div>
+
+                <div class="form-outline mb-3">
+                    <input type="text" name="CNPJ" class="form-control form-control-lg" required placeholder="CNPJ" />
+                </div>
+
+                <div class="form-outline mb-3">
+                    <input list="ramos" id="ramoEmpresa" name="Ramo" placeholder="Selecione um ramo..." class="form-control form-control-lg">
+                    <datalist id="ramos">
+                        <option value="Agropecuária">
+                        <option value="Alimentação">
+                        <option value="Automotivo">
+                        <option value="Bancário">
+                        <option value="Comércio Exterior">
+                        <option value="Construção Civil">
+                        <option value="Educação">
+                        <option value="Energia">
+                        <option value="Entretenimento">
+                        <option value="Indústria">
+                        <option value="Mineração">
+                        <option value="Saúde">
+                        <option value="Segurança">
+                        <option value="Serviços">
+                        <option value="Tecnologia da Informação">
+                        <option value="Telecomunicações">
+                        <option value="Transporte">
+                        <option value="Turismo">
+                        <option value="Finanças">
+                        <option value="Seguros">
+                        <option value="Meio Ambiente">
+                        <option value="Imobiliário">
+                        <option value="Agronegócio">
+                        <option value="Logística">
+                        <option value="Comunicação">
+                        <option value="Varejo">
+                        <option value="Consultoria">
+                        <option value="Auditoria">
+                        <option value="Publicidade e Marketing">
+                        <option value="Recursos Humanos">
+                        <option value="Pesquisa e Desenvolvimento">
+                        <option value="Biotecnologia">
+                        <option value="Farmacêutica">
+                        <option value="Produção Audiovisual">
+                        <option value="Moda e Vestuário">
+                        <option value="Esportes e Lazer">
+                        <option value="Petróleo e Gás">
+                        <option value="Jurídico">
+                        <option value="Inovação">
+                        <option value="Economia Criativa">
+                        <option value="Artes">
+                        <option value="Engenharia">
+                        <option value="Arquitetura e Urbanismo">
+                        <option value="Produtos de Consumo">
+                        <option value="Hotelaria">
+                        <option value="Bebidas">
+                        <option value="Distribuição e Atacado">
+                        <option value="Fintech">
+                        <option value="Agricultura Orgânica">
+                        <option value="Produção Cinematográfica">
+                        <option value="E-commerce">
+                        <option value="Escolas e Universidades">
+                        <option value="Microfinanças">
+                        <option value="Mobilidade Urbana">
+                        <option value="Desenvolvimento de Software">
+                        <option value="Cibersegurança">
+                        <option value="Infraestrutura">
+                        <option value="Relações Públicas">
+                        <option value="Indústria Química">
+                        <option value="Tecnologia Verde">
+                        <option value="Energias Renováveis">
+                        <option value="Associações e Fundações">
+                        <option value="Setor Público">
+                        <option value="Negócios Sociais">
+                        <option value="Atividades Imobiliárias">
+                    </datalist>
+                </div>
+
                 <div class="d-flex justify-content-between align-items-center">
                     <strong>
                         <a class="text-primary" href="{{route("login")}}" class="text-body">Já Está Cadastrado?</a>
@@ -71,5 +152,12 @@
             </div>
         </div>
     </section>
+    <script src="https://code.jquery.com/jquery-3.7.1.slim.js" integrity="sha256-UgvvN8vBkgO0luPSUl2s8TIlOSYRoGFAX4jlCIm9Adc=" crossorigin="anonymous"></script>
+    <script src="{{asset('js/inputmask.js')}}"></script>
+    <script>
+        $(document).ready(function(){
+            $("input[name=CNPJ]").inputmask('99.999.999/9999-99')
+        })
+    </script>
 </body>
 </html>

@@ -14,9 +14,12 @@ class Envio extends Model
     protected $fillable = [
         'IDEmail',
         'IDUser',
+        'IDInstituicao',
         'IDMensagem',
         'Hora',
         'Mensagem',
-        'Anexos'
+        'Anexos',
+        'created_at',
+        'updated_at'
     ];
 }

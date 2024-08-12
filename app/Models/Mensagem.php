@@ -12,8 +12,11 @@ class Mensagem extends Model
     protected $table = 'mensagens';
 
     protected $fillable = [
+        'IDInstituicao',
         'Titulo',
         'Conteudos',
-        'Anexos'
+        'Anexos',
+        'created_at',
+        'updated_at'
     ];
 }

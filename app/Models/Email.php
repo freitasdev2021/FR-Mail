@@ -13,6 +13,9 @@ class Email extends Model
     protected $fillable = [
         'IDLista',
         'Nome',
-        'Email'
+        'IDInstituicao',
+        'Email',
+        'created_at',
+        'updated_at'
     ];
 }

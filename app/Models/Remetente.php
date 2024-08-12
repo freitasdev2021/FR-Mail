@@ -5,16 +5,16 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Lista extends Model
+class Remetente extends Model
 {
     use HasFactory;
 
-    protected $table = 'listas';
+    protected $table = 'remetentes';
 
     protected $fillable = [
         'IDInstituicao',
-        'Nome',
-        'DSLista',
+        'Titulo',
+        'Email',
         'created_at',
         'updated_at'
     ];
