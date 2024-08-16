@@ -8,30 +8,34 @@
         <div class="fr-card-body">
             <x-form action="{{route('Remetentes/Save')}}" enctype="multipart/form-data">
                 <div class="row">
-                    <div class="col-sm-4">
+                    <div class="col-sm-1">
                         <label>Tipo</label>
                         <select name="Acao" class="form-control">
                             <option value="Adicionar">Adicionar</option>
                             <option value="Exportar">Importar</option>
                         </select>
                     </div>
-                    <div class="col-sm-6 escrever">
+                    <div class="col-sm-5">
+                        <label>Titulo</label>
+                        <input type="text" name="Titulo" class="form-control">
+                    </div>
+                    <div class="col-sm-5 escrever">
                         <label>Email</label>
                         <input type="email" name="Email" class="form-control">
                     </div>
-                    <div class="col-sm-6 importar">
+                    <div class="col-sm-5 importar">
                         <label>Arquivo</label>
                         <input type="file" name="Arquivo" class="form-control">
                     </div>
-                    <div class="col-sm-2">
+                    <div class="col-sm-1">
                         <label style="visibility: hidden">a</label>
-                        <input type="submit" class="form-control btn btn-success" value="Enviar">
+                        <input type="submit" class="form-control btn bg-fr text-white" value="Enviar">
                     </div>
                 </div>
                 <hr>
                 <div class="row">
                     <table class="table" id="escolas" data-rota="{{route('Remetentes/list')}}">
-                        <thead>
+                        <thead class="bg-fr text-white">
                             <tr>
                                 <th>Título</th>
                                 <th>Email</th>

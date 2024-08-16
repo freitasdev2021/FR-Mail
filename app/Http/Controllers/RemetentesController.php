@@ -23,13 +23,14 @@ class RemetentesController extends Controller
     public function save(Request $request){
         try{
             $data = $request->all();
-            if($request->file('Arquivo')){
-                $Foto = $request->file('Arquivo')->getClientOriginalName();
-                $request->file('Arquivo')->storeAs('modelos',$Foto,'public');
-            }
+            $data['IDInstituicao'] = Auth::user()->IDInstituicao;
+            // if($request->file('Arquivo')){
+            //     $Foto = $request->file('Arquivo')->getClientOriginalName();
+            //     $request->file('Arquivo')->storeAs('modelos',$Foto,'public');
+            // }
 
             if($request->Acao == "Adicionar"){
-                //rotina de inserção
+                Remetente::create($data);
             }else{
                 //rotina de importação
             }
