@@ -8,16 +8,16 @@ use Illuminate\View\Component;
 
 class form extends Component
 {
-    public $rota;
+    public $action;
 
     public $enctype;
     /**
      * Create a new component instance.
      */
-    public function __construct($rota,$enctype)
+    public function __construct($action,$enctype)
     {
         $this->enctype = $enctype;
-        $this->rota = $rota;
+        $this->action = $action;
     }
 
     /**
