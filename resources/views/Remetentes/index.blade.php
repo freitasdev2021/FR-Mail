@@ -15,7 +15,7 @@
                             <option value="Exportar">Importar</option>
                         </select>
                     </div>
-                    <div class="col-sm-5">
+                    <div class="col-sm-5 escrever">
                         <label>Titulo</label>
                         <input type="text" name="Titulo" class="form-control">
                     </div>
@@ -23,7 +23,7 @@
                         <label>Email</label>
                         <input type="email" name="Email" class="form-control">
                     </div>
-                    <div class="col-sm-5 importar">
+                    <div class="col-sm-10 importar">
                         <label>Arquivo</label>
                         <input type="file" name="Arquivo" class="form-control">
                     </div>
@@ -39,6 +39,7 @@
                             <tr>
                                 <th>Título</th>
                                 <th>Email</th>
+                                <th>Adicionado em</th>
                             </tr>
                         </thead>
                         <tbody>

@@ -12,7 +12,7 @@
                 <a href="{{route('dashboard')}}" class="nav_logo"><i class='bx bx-envelope text-white'></i></i><span class="nav_logo-name">FR Mail</span> </a>
                 <div class="nav_list">
                     <x-Modulo nome="Remetentes" icon="bx bx-mail-send" rota="Remetentes/index" endereco="Remetentes"/>
-                    <x-Modulo nome="Emails" icon="bx bx-list-ul" rota="dashboard" endereco="profile"/>
+                    <x-Modulo nome="Contatos" icon="bx bx-list-ul" rota="dashboard" endereco="profile"/>
                     <x-Modulo nome="Envios" icon="bx bx-right-arrow-alt" rota="dashboard" endereco="profile"/>
                     <x-Modulo nome="Mensagens" icon="bx bx-message-dots" rota="dashboard" endereco="profile"/>
                 </div>
