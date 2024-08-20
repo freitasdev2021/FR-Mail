@@ -1,4 +1,4 @@
-<div class="col-sm-12 p-2 center-form">
+<div class="col-sm-12 p-2">
     <form action="{{$action}}" method="POST" enctype="{{$enctype}}">
         @csrf
         @method("POST")

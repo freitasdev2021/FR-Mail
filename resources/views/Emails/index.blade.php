@@ -43,7 +43,7 @@
                 </div>
                 <hr>
                 <div class="row">
-                    <table class="table" id="escolas" data-rota="{{route('Contatos/list')}}">
+                    <table class="table" id="escolas" data-rota="{{route('Contatos/lista')}}">
                         <thead class="bg-fr text-white">
                             <tr>
                                 <th>Título</th>

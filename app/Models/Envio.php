@@ -15,6 +15,8 @@ class Envio extends Model
         'IDEmail',
         'IDUser',
         'IDInstituicao',
+        'IDRemetente',
+        'Assunto',
         'IDMensagem',
         'Hora',
         'Mensagem',
