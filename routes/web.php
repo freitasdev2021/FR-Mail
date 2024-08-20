@@ -33,6 +33,8 @@ Route::middleware('auth')->group(function () {
     Route::post('Envios/Save',[EnviosController::class,'saveEnvio'])->name('Envios/Save');
     //Relatorios
     Route::get('Envios/Relatorios',[RelatoriosController::class,'index'])->name('Envios/Relatorios/index');
+    Route::get('Envios/Relatorios/Export',[RelatoriosController::class,'export'])->name("Envios/Relatorios/Export");
+    Route::get('Envios/Relatorios/list',[RelatoriosController::class,'getRelatorios'])->name('Envios/Relatorios/list');
     //Contatos/Listas
     Route::get('Contatos/Listas',[EmailsController::class,'indexListas'])->name('Contatos/Listas/index');
     Route::get('Contatos/Listas/Cadastro',[EmailsController::class,'lista'])->name('Contatos/Listas/Novo');

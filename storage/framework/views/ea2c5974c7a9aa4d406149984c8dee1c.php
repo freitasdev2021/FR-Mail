@@ -71,7 +71,7 @@
 <?php endif; ?>
                     <?php if (isset($component)) { $__componentOriginalb387443d4cc379b18e2c6b424d52cd7f = $component; } ?>
 <?php if (isset($attributes)) { $__attributesOriginalb387443d4cc379b18e2c6b424d52cd7f = $attributes; } ?>
-<?php $component = App\View\Components\Modulo::resolve(['nome' => 'API','icon' => 'bx bx-message-dots','rota' => 'dashboard','endereco' => 'profile'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
+<?php $component = App\View\Components\Modulo::resolve(['nome' => 'API e SMTP','icon' => 'bx bx-code-alt','rota' => 'dashboard','endereco' => 'profile'] + (isset($attributes) && $attributes instanceof Illuminate\View\ComponentAttributeBag ? $attributes->all() : [])); ?>
 <?php $component->withName('Modulo'); ?>
 <?php if ($component->shouldRender()): ?>
 <?php $__env->startComponent($component->resolveView(), $component->data()); ?>

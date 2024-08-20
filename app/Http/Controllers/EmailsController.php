@@ -102,7 +102,7 @@ class EmailsController extends Controller
     }
 
     public function getContatos(){
-        $registros = DB::select("SELECT e.Nome,e.Email,e.created_at,CASE WHEN e.IDLista = 0 THEN 'Sem Lista Definida' ELSE l.Nome END as Lista FROM emails e LEFT JOIN listas l ON(l.id = e.IDLista)");
+        $registros = DB::select("SELECT e.Nome,e.Email,e.created_at,CASE WHEN e.IDLista = 0 THEN 'Sem Lista Definida' ELSE l.Nome END as Lista FROM emails e LEFT JOIN listas l ON(l.id = e.IDLista) WHERE ev.created_at >= DATE_SUB(CURDATE(), INTERVAL 90 DAY);");
         if(count($registros) > 0){
             foreach($registros as $r){
                 $item = [];
