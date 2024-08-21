@@ -28,7 +28,7 @@
                             Headers: Authorization: Bearer {SEU TOKEN}
                         </li>
                         <li>
-                            Endpoint: www.frmail.com/api/Relatorio
+                            Endpoint: www.frmail.com.br/api/Relatorio
                         </li>
                         <li>
                             Metodo: GET
@@ -43,7 +43,7 @@
                             Headers: Authorization: Bearer {SEU TOKEN}
                         </li>
                         <li>
-                            Endpoint: www.frmail.com/api/Relatorio
+                            Endpoint: www.frmail.com.br/api/Relatorio
                         </li>
                         <li>
                             Metodo: POST
