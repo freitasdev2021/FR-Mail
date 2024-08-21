@@ -44,6 +44,7 @@
                         </li>
                     </ul>
                 </dd>
+                <hr>
                 <dt>Enviar Email</dt>
                 <dd>
                     <ul>
@@ -54,7 +55,7 @@
                             Endpoint: www.frmail.com/api/Relatorio
                         </li>
                         <li>
-                            Metodo: GET
+                            Metodo: POST
                         </li>
                     </ul>
                     <p class="card-text"><strong>Body</strong></p>
