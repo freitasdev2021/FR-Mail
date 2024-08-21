@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->integer('IDUser');
             $table->integer('IDEmail');
-            $table->integer('IDMensagem');
+            $table->integer('IDRemetente');
+            $table->string('Assunto',100);
             $table->text('Mensagem');
             $table->text('Anexos');
             $table->integer('IDInstituicao');
