@@ -80,6 +80,7 @@ class RelatoriosController extends Controller
     public function getRelatorios(){
         $SQL = "SELECT em.Email,ev.Assunto,ev.Mensagem,ev.Anexos,rm.Email as Remetente,ev.created_at as DTEnvio FROM envios ev INNER JOIN emails em ON(em.id = ev.IDEmail) INNER JOIN remetentes rm ON(rm.id = ev.IDRemetente) WHERE ev.created_at >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)";
         $registros = DB::select($SQL);
+        $IDInstituicao = Auth::user()->IDInstituicao;
         if(count($registros) > 0){
             foreach($registros as $r){
                 $AnexosJSON = json_decode($r->Anexos);
@@ -89,7 +90,7 @@ class RelatoriosController extends Controller
                 
                 $Anexos = "<ul>";
                 foreach($AnexosJSON as $aj) {
-                    $Anexos .= "<li><a href=\"" . url('storage/Instituicao_1/anexos/' . $aj->Nome) . "\" target='_blank'>" . $aj->Nome . "</a></li>";
+                    $Anexos .= "<li><a href=\"" . url('storage/Instituicao_'.$IDInstituicao.'/anexos/' . $aj->Nome) . "\" target='_blank'>" . $aj->Nome . "</a></li>";
                 }
                 $Anexos .= "</ul>";
 
