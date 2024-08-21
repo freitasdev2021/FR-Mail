@@ -115,4 +115,42 @@ class EnviosController extends Controller
         }
         //dd($dataAnexos);
     }
+
+    public function saveEnvioApi(Request $request){
+        try{
+            $dataAnexos = array();
+            //dd($dataAnexos);
+            $Remetente = $request->Remetente;
+            $Para = str_replace(['[', ']', '\''], '', $request->Destinatario);
+            $Para = explode(",",$Para);
+            $countEnvios = 0;
+            
+            SMTPController::sendMass($Remetente,$Para,$request->Assunto,$request->Mensagem,$dataAnexos);
+            foreach($Para as $ie){
+                $IDEmail = Email::where('Email',$ie)->value('id');
+                Envio::create([
+                    "IDUser"=> $request->IDUser,
+                    "IDRemetente"=> Remetente::where('Email',$request->Remetente)->value('id'),
+                    "IDInstituicao" => $request->IDInstituicao,
+                    "IDEmail" => $IDEmail,
+                    "Assunto" => $request->Assunto,
+                    "Mensagem"=> $request->Mensagem,
+                    "Hora"=> date('H:i:s'),
+                    "Anexos"=> json_encode($dataAnexos)
+                ]);
+                $countEnvios++;
+            }
+            $mensagem = $countEnvios." Envios Realizados com Sucesso!";
+            $status = "success";
+        }catch(\Throwable $th){
+            $mensagem = $th->getMessage();
+            $status = "error";
+        }finally{
+            return array(
+                "mensagem" => $mensagem,
+                "status" => $status
+            );
+        }
+        //dd($dataAnexos);
+    }
 }

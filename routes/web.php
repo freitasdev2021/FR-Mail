@@ -4,6 +4,7 @@ use App\Http\Controllers\RemetentesController;
 use App\Http\Controllers\EmailsController;
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\RelatoriosController;
+use App\Http\Controllers\DeveloperController;
 use App\Http\Controllers\EnviosController;
 use Illuminate\Support\Facades\Route;
 
@@ -27,6 +28,8 @@ Route::middleware('auth')->group(function () {
     Route::get('Contatos',[EmailsController::class,'index'])->name('Contatos/index');
     Route::get('Contatos/lista',[EmailsController::class,'getContatos'])->name('Contatos/lista');
     Route::post('Contatos/Save',[EmailsController::class,'save'])->name('Contatos/Save');
+    //Developer
+    Route::get('Developer/index',[DeveloperController::class,'index'])->name('Developer/index');
     //Envios
     Route::get('Envios',[EnviosController::class,'index'])->name('Envios/index');
     Route::get('Contatos/list',[EnviosController::class,'getContatos'])->name('Envios/Contatos/list');

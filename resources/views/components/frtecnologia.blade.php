@@ -14,7 +14,7 @@
                     <x-Modulo nome="Remetentes" icon="bx bx-mail-send" rota="Remetentes/index" endereco="Remetentes"/>
                     <x-Modulo nome="Contatos" icon="bx bxs-contact" rota="Contatos/index" endereco="Contatos"/>
                     <x-Modulo nome="Envios" icon="bx bx-right-arrow-alt" rota="Envios/index" endereco="Envios"/>
-                    <x-Modulo nome="API e SMTP" icon="bx bx-code-alt" rota="dashboard" endereco="profile"/>
+                    <x-Modulo nome="API e SMTP" icon="bx bx-code-alt" rota="Developer/index" endereco="Developer"/>
                 </div>
              </div>
              <form action="{{route('logout')}}" method="POST">

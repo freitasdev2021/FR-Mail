@@ -114,4 +114,10 @@ class RelatoriosController extends Controller
         
         echo json_encode($resultados);
     }
+
+    public function getRelatoriosApi(){
+        $SQL = "SELECT em.Email,ev.Assunto,ev.Mensagem,ev.Anexos,rm.Email as Remetente,ev.created_at as DTEnvio FROM envios ev INNER JOIN emails em ON(em.id = ev.IDEmail) INNER JOIN remetentes rm ON(rm.id = ev.IDRemetente) WHERE ev.created_at >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)";
+        $registros = json_encode(DB::select($SQL));
+        return $registros;
+    }
 }
