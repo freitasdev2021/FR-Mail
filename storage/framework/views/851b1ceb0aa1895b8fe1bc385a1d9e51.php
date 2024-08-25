@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FR Controller: Login</title>
+    <title>FR Mail: Login</title>
     <link rel="stylesheet" href="<?php echo e(asset('css/bootstrap.min.css')); ?>">
     <link rel="stylesheet" href="<?php echo e(asset('css/login.css')); ?>">
     <link rel="icon" type="image/x-icon" href="img/fricon.ico" />
@@ -18,7 +18,7 @@
                 class="img-fluid" alt="Sample image">
             </div>
             <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
-                <h3 align="center">Bem Vindo(a)!</h3>
+                <h3 align="center">Bem-vindo(a)!</h3>
                 <hr>
                 <form id="form_acesso" action="<?php echo e(route('login')); ?>" method="POST">
                 <?php echo csrf_field(); ?>
