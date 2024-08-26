@@ -24,10 +24,54 @@ class RelatoriosController extends Controller
     ]);
 
     public function index(){
+        $IDInstituicao = Auth::user()->IDInstituicao;
+        $whereSearch = '';
+        //
+        $pesquisa = '';
+        if(isset($_GET['pesquisa'])){
+            $pesquisa = $_GET['pesquisa'];
+        }
+        if(!empty($pesquisa)){
+            $whereSearch = ' AND ev.Assunto LIKE "%'.$pesquisa.'%" OR ev.Mensagem LIKE "%'.$pesquisa.'%" ';
+        }
+        //PAGINA ATUAL
+        if(!isset($_GET['page'])){
+            $page = 1;
+        }else{
+            $page = $_GET['page'];
+        }
+        //PERGUNTA O ESTADO DA PAGINA ATUAL
+        if($page == 1){
+            $limit = " LIMIT 10";
+        }else{
+            $limit = " LIMIT ".($page-1) * 10 .",10";
+        }
+        //
+        $SQL = "SELECT 
+            em.Email,em.Email as Destinatario,ev.Assunto,ev.Mensagem,ev.Anexos,rm.Email as Remetente,ev.created_at as DTEnvio 
+        FROM envios ev 
+        INNER JOIN emails em ON(em.id = ev.IDEmail) 
+        INNER JOIN remetentes rm ON(rm.id = ev.IDRemetente) 
+        WHERE ev.created_at >= DATE_SUB(CURDATE(), INTERVAL 90 DAY) $whereSearch $limit";
+        $registros = DB::select($SQL);
+        $qtSql = DB::select("SELECT id FROM envios ev WHERE IDInstituicao = $IDInstituicao $whereSearch ");
+        $QuantidadeTotal = ceil(count($qtSql));
+        $linksPaginaveis = ceil($QuantidadeTotal/10);
+        $Rota = route('Envios/Relatorios/index');
         return view('Relatorios.index',[
             "submodulos"=> self::submodulos,
             "Listas" => Lista::select('id','Nome')->where('IDInstituicao',Auth::user()->IDInstituicao)->get(),
-            "Remetentes" => Remetente::select('id','Email')->where('IDInstituicao',Auth::user()->IDInstituicao)->get()
+            "Remetentes" => Remetente::select('id','Email')->where('IDInstituicao',Auth::user()->IDInstituicao)->get(),
+            "Registros"=>$registros,
+            "Quantidade"=> $QuantidadeTotal,
+            "linksPaginaveis" => $linksPaginaveis,
+            "primeiraPagina"=> max($page-3,1),
+            "ultimaPagina"=> min($QuantidadeTotal,$page+3),
+            "page"=> $page,
+            "Anterior"=> $Rota."?pesquisa=".$pesquisa."&page=".$linksPaginaveis-1,
+            "Atual"=> $Rota,
+            "Pesquisa"=> $pesquisa,
+            "Proximo"=> $Rota."?pesquisa=".$pesquisa."&page=".$linksPaginaveis 
         ]);
     }
 
@@ -78,42 +122,8 @@ class RelatoriosController extends Controller
     }
 
     public function getRelatorios(){
-        $SQL = "SELECT em.Email,ev.Assunto,ev.Mensagem,ev.Anexos,rm.Email as Remetente,ev.created_at as DTEnvio FROM envios ev INNER JOIN emails em ON(em.id = ev.IDEmail) INNER JOIN remetentes rm ON(rm.id = ev.IDRemetente) WHERE ev.created_at >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)";
-        $registros = DB::select($SQL);
-        $IDInstituicao = Auth::user()->IDInstituicao;
-        if(count($registros) > 0){
-            foreach($registros as $r){
-                $AnexosJSON = json_decode($r->Anexos);
-                // echo "<pre>";
-                // print_r($AnexosJSON);
-                // echo "</pre>";
-                
-                $Anexos = "<ul>";
-                foreach($AnexosJSON as $aj) {
-                    $Anexos .= "<li><a href=\"" . url('storage/Instituicao_'.$IDInstituicao.'/anexos/' . $aj->Nome) . "\" target='_blank'>" . $aj->Nome . "</a></li>";
-                }
-                $Anexos .= "</ul>";
-
-                $item = [];
-                $item[] = $r->Remetente;
-                $item[] = $r->Email;
-                $item[] = $r->Assunto;
-                $item[] = $r->Mensagem;
-                $item[] = $Anexos;
-                $item[] = date('d/m/Y', strtotime($r->DTEnvio));
-                $itensJSON[] = $item;
-            }
-        }else{
-            $itensJSON = [];
-        }
         
-        $resultados = [
-            "recordsTotal" => intval(count($registros)),
-            "recordsFiltered" => intval(count($registros)),
-            "data" => $itensJSON 
-        ];
         
-        echo json_encode($resultados);
     }
 
     public function getRelatoriosApi(){

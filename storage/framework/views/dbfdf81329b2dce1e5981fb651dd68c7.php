@@ -40,7 +40,13 @@
                 </div>
             </div>
             <hr>
-            <table class="table col-sm-12" id="escolas" data-rota="<?php echo e(route('Envios/Relatorios/list')); ?>">
+            <table class="table col-sm-12">
+                <form action="<?php echo e(route('Envios/Relatorios/index')); ?>" method="GET" class="row d-flex justify-content-between">
+                    <div class="col-sm-2">
+                        <input type="search" class="form-control" name="pesquisa" placeholder="Pesquisa" value="<?php echo e($Pesquisa); ?>">
+                    </div>
+                </form>
+                <br>
                 <thead class="bg-fr text-white">
                     <tr>
                         <th>Remetente</th>
@@ -52,9 +58,37 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr></tr>
+                    <?php $__currentLoopData = $Registros; $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $r): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                    <tr>
+                        <td><?php echo e($r->Remetente); ?></td>
+                        <td><?php echo e($r->Destinatario); ?></td>
+                        <td><?php echo e($r->Assunto); ?></td>
+                        <td><?php echo e($r->Mensagem); ?></td>
+                        <td>
+                            <ul>
+                                <?php $__currentLoopData = json_decode($r->Anexos); $__env->addLoop($__currentLoopData); foreach($__currentLoopData as $aj): $__env->incrementLoopIndices(); $loop = $__env->getLastLoop(); ?>
+                                    <li>
+                                        <a href="<?php echo e($aj->Nome); ?>"><?php echo e($aj->Nome); ?></a>
+                                    </li>
+                                <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
+                            </ul>
+                        </td>
+                        <td><?php echo e(date('d/m/Y',strtotime($r->DTEnvio))); ?></td>
+                    </tr>
+                    <?php endforeach; $__env->popLoop(); $loop = $__env->getLastLoop(); ?>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                  <li class="page-item"><a class="page-link" href="<?php echo e($Anterior); ?>">Anterior</a></li>
+                  <?php for($i=$primeiraPagina;$i<$ultimaPagina;$i++): ?>
+                    <?php if($i<=$linksPaginaveis): ?>
+                        <li class="page-item <?php echo e(($page==$i) ? 'active' : ''); ?>"><a class="page-link" href="<?php echo e($Atual.'?pesquisa='.$Pesquisa.'&page='.$i); ?>"><?php echo e($i); ?></a></li>
+                    <?php endif; ?>
+                  <?php endfor; ?>
+                  <li class="page-item"><a class="page-link" href="<?php echo e($Proximo); ?>">Próximo</a></li>
+                </ul>
+            </nav>
         </div>
     </div>
  <?php echo $__env->renderComponent(); ?>
