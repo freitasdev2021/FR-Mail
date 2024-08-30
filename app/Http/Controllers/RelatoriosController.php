@@ -77,8 +77,19 @@ class RelatoriosController extends Controller
 
     public function export()
     {
+        $IDInstituicao = Auth::user()->id;
         // Realiza a consulta para pegar os registros dos últimos 90 dias
-        $SQL = "SELECT em.Email,ev.Assunto,ev.Mensagem,ev.Anexos,rm.Email as Remetente,ev.created_at as DTEnvio FROM envios ev INNER JOIN emails em ON(em.id = ev.IDEmail) INNER JOIN remetentes rm ON(rm.id = ev.IDRemetente) WHERE ev.created_at >= DATE_SUB(CURDATE(), INTERVAL 90 DAY)";
+        $SQL = "SELECT 
+            em.Email,
+            ev.Assunto,
+            ev.Mensagem,
+            ev.Anexos,
+            rm.Email as Remetente,
+            ev.created_at as DTEnvio 
+        FROM envios ev 
+        INNER JOIN emails em ON(em.id = ev.IDEmail) 
+        INNER JOIN remetentes rm ON(rm.id = ev.IDRemetente) 
+        WHERE ev.created_at >= DATE_SUB(CURDATE(), INTERVAL 90 DAY AND ev) AND ev.IDInstituicao = $IDInstituicao";
         $registros = DB::select($SQL);
         // Cria uma nova planilha
         $spreadsheet = new Spreadsheet();
