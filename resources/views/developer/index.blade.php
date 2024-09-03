@@ -3,11 +3,17 @@
     <div class="card">
         <div class="card-header bg-fr text-white">
             <strong>SMTP</strong>
+            <p>
+                O Envio pode ser realizado com Domínio Próprio, até mesmo no Gmail, porem no Gmail Necessita-se de Autenticação de Usuário Real, porem para se Identificar com Domínio Próprio, coloque seu Email no campo 'From' de Remetente
+            </p>
         </div>
         <div class="card-body">
           <ul>
-            <li>SMTP: mail.freventosdigitais.com.br</li>
-            <li>Porta: 587</li>
+            <li>SMTP: mail.frmail.com.br</li>
+            <li>Porta: 25</li>
+            <li><strong>Para Gmail (Necessita de Envio com Autenticação Real): </strong></li>
+            <li>Usuario SMTP: comunicacao@frmail.com.br</li>
+            <li>Senha SMTP: SwPx3841</li>
           </ul>
         </div>
     </div>
